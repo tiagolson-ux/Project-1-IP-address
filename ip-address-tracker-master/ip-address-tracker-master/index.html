@@ -1,34 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | IP Address Tracker</title>
+  <!--
+    NOTE TO SELF:
+    This link connects my HTML to my own CSS file.
+    All layout, colors, spacing, fonts, responsiveness live in style.css.
+  -->
+  <link rel="stylesheet" href="./style.css" />
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+  <!--
+    NOTE TO SELF:
+    Leaflet CSS makes the map tiles and controls display correctly.
+    Without this, the map would look broken or invisible.
+  -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+
+  <!--
+    NOTE TO SELF:
+    Leaflet JS gives me the global "L" object.
+    I use L.map(), L.tileLayer(), L.marker() in my script.js file.
+  -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+
+  <!--
+    NOTE TO SELF:
+    This is my main JavaScript file.
+    I use "defer" so the script waits until the HTML is loaded
+    before it tries to grab elements like the form and map div.
+  -->
+  <script src="./script.js" defer></script>
+
+<title>IP Address Tracker</title>
+
 </head>
+
 <body>
+  <!--
+    SECTION 1: HEADER
+    NOTE TO SELF:
+    Simple header that shows the name of my app.
+    I will mention this when I talk about page structure.
+  -->
+  <header class="header">
+    <h1 class="app-title">IP Address Tracker</h1>
+  </header>
 
-  IP Address Tracker
+  <!--
+    MAIN CONTENT:
+    Contains three big parts:
+    1) Search section (form + input + button)
+    2) Info panel (IP, location, timezone, ISP)
+    3) Map section (Leaflet map container)
+  -->
+  <main>
+    <!--
+      SECTION 2: SEARCH FORM
+      NOTE TO SELF:
+      The user types an IP address or domain here.
+      When they submit, my JS listens to this form's submit event.
+    -->
+    <section class="search-section">
+      <form id="ip-form" class="ip-form">
+        <input
+          type="text"
+          id="ip-input"
+          class="ip-input"
+          placeholder="Search for any IP address or domain"
+          aria-label="Search for any IP address or domain"
+        />
+        <button type="submit" class="ip-submit-btn">
+          &gt;
+        </button>
+      </form>
+    </section>
 
-  Search for any IP address or domain
+    <!--
+      SECTION 3: INFO PANEL
+      NOTE TO SELF:
+      These four boxes will show data returned from the IPify API.
+      JS will target the <p> tags by id and change their textContent.
+    -->
+    <section class="info-panel" aria-label="IP information">
+      <div class="info-item">
+        <h2 class="info-label">IP ADDRESS</h2>
+        <p id="info-ip" class="info-value">Loading...</p>
+      </div>
+      <div class="info-item">
+        <h2 class="info-label">LOCATION</h2>
+        <p id="info-location" class="info-value">Loading...</p>
+      </div>
+      <div class="info-item">
+        <h2 class="info-label">TIMEZONE</h2>
+        <p id="info-timezone" class="info-value">Loading...</p>
+      </div>
+      <div class="info-item">
+        <h2 class="info-label">ISP</h2>
+        <p id="info-isp" class="info-value">Loading...</p>
+      </div>
+    </section>
 
-  IP Address
-  Location
-  Timezone
-    UTC <!-- add offset value dynamically using the API -->
-  ISP
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
+    <!--
+      SECTION 4: MAP SECTION
+      NOTE TO SELF:
+      The div with id="map" is where Leaflet draws the interactive map.
+      All the visual map work happens in script.js, not here.
+    -->
+    <section class="map-section" aria-label="Map">
+      <div id="map" class="map"></div>
+    </section>
+  </main>
 </body>
 </html>
