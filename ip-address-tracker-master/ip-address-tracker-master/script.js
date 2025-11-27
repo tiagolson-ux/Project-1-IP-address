@@ -15,3 +15,17 @@ const infoTimezone = document.getElementById('info-timezone');
 const infoIsp = document.getElementById('info-isp');
 
 console.log('DOM elements selected.'); // Good checkpoint for debugging and committing.
+
+// ===============================
+// 2. MAP VARIABLES
+// ===============================
+//
+// NOTE TO SELF:
+// I declare variables for the Leaflet map and marker.
+// The map is the interactive map itself.
+// The marker is the pin that moves when the IP changes.
+
+let map;      // Will hold the Leaflet map instance
+let marker;   // Will hold the marker (pin) on the map
+
+console.log('Map variables declared.');
