@@ -97,3 +97,25 @@ function initMap(lat, lng) {
 
 console.log('initMap function defined.');
 
+// ===============================
+// 5. UPDATE THE INFO PANEL
+// ===============================
+//
+// NOTE TO SELF:
+// This function takes the API response data,
+// pulls out the pieces I want to show the user,
+// and updates the four info fields in the DOM.
+//
+function updateInfoPanel(data) {
+  const ip = data.ip;
+  const location = `${data.location.city}, ${data.location.region}, ${data.location.country}`;
+  const timezone = `UTC ${data.location.timezone}`;
+  const isp = data.isp;
+
+  infoIp.textContent = ip;
+  infoLocation.textContent = location;
+  infoTimezone.textContent = timezone;
+  infoIsp.textContent = isp;
+}
+
+console.log('updateInfoPanel function ready.');
