@@ -169,3 +169,18 @@ async function fetchAndDisplay(ipOrDomain) {
 }
 
 console.log('fetchAndDisplay function defined.');
+
+// ===============================
+// 7. INITIAL LOAD (USER'S OWN IP)
+// ===============================
+//
+// NOTE TO SELF:
+// When the page first loads, I call fetchAndDisplay()
+// with no argument. IPify then uses the client's IP
+// address so the user sees their own location by default.
+//
+window.addEventListener('DOMContentLoaded', () => {
+  fetchAndDisplay();
+});
+
+console.log('DOMContentLoaded listener added.');
