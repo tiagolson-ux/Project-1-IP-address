@@ -184,3 +184,29 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 console.log('DOMContentLoaded listener added.');
+
+// ===============================
+// 8. FORM SUBMISSION HANDLER
+// ===============================
+//
+// NOTE TO SELF:
+// When the user submits the form (click or Enter):
+//  1. Prevent the page from refreshing.
+//  2. Get the value from the input.
+//  3. Validate that it's not empty.
+//  4. Call fetchAndDisplay(value) to show that IP/domain.
+//
+ipForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const value = ipInput.value.trim();
+
+  if (!value) {
+    alert('Please enter an IP address or domain.');
+    return;
+  }
+
+  fetchAndDisplay(value);
+});
+
+console.log('Form submit listener set up. Girl, you got this. Commit when search works!');
