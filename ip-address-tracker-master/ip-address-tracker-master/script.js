@@ -119,3 +119,53 @@ function updateInfoPanel(data) {
 }
 
 console.log('updateInfoPanel function ready.');
+
+// ===============================
+// 6. MAIN FETCH FUNCTION
+// ===============================
+//
+// NOTE TO SELF:
+// fetchAndDisplay is the "heart" of the app.
+// Steps:
+//  1. Build the correct URL based on user input.
+//  2. Call fetch() to request data from IPify.
+//  3. Check for HTTP errors.
+//  4. Parse the JSON response.
+//  5. Update the info panel.
+//  6. Update the map with the new coordinates.
+//  7. Catch and handle any errors.
+//
+async function fetchAndDisplay(ipOrDomain) {
+  try {
+    const url = buildApiUrl(ipOrDomain);
+    console.log('Requesting:', url);
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log('API response:', data);
+
+    // Update the text info panel
+    updateInfoPanel(data);
+
+    // Get latitude and longitude and update the map
+    const lat = data.location.lat;
+    const lng = data.location.lng;
+
+    initMap(lat, lng);
+  } catch (error) {
+    console.error('Problem fetching IP data:', error);
+
+    // Show a friendly message in the panel if something goes wrong
+    infoIp.textContent = 'Error';
+    infoLocation.textContent = 'Could not load data';
+    infoTimezone.textContent = '-';
+    infoIsp.textContent = '-';
+  }
+}
+
+console.log('fetchAndDisplay function defined.');
