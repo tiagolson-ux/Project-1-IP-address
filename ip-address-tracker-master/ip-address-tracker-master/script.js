@@ -30,6 +30,21 @@ let marker;   // Will hold the marker (pin) on the map
 
 console.log('Map variables declared.');
 
+// ===============================
+// 3. API CONFIGURATION (IPIFY)
+// ===============================
+//
+// NOTE TO SELF:
+// I store my API key and the base URL for the IPify Geo API.
+// The key is required for authentication.
+// The base URL points to the "country,city" endpoint.
+
+const IPIFY_API_KEY = 'at_siSBDQRbyRddjWRShO6tGpdAyBSo3';
+const IPIFY_BASE_URL = 'https://geo.ipify.org/api/v2/country,city';
+
+console.log('API config ready.');
+
+
 // -------------------------------------------------------------
 // Helper function: buildApiUrl
 // -------------------------------------------------------------
@@ -202,7 +217,8 @@ ipForm.addEventListener('submit', (event) => {
   const value = ipInput.value.trim();
 
   if (!value) {
-    alert('Please enter an IP address or domain.');
+    alert(at_siSBDQRbyRddjWRShO6tGpdAyBSo3');
+
     return;
   }
 
