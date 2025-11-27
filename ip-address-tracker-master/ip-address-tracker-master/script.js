@@ -59,3 +59,41 @@ function buildApiUrl(ipOrDomain) {
 }
 
 console.log('buildApiUrl function defined.');
+
+// ===============================
+// 4. INITIALIZE OR UPDATE THE MAP
+// ===============================
+//
+// NOTE TO SELF:
+// initMap takes latitude and longitude.
+// If the map does not exist yet, it creates it and adds the tile layer.
+// If the map already exists, it just recenters it.
+// It also creates or moves the marker.
+//
+function initMap(lat, lng) {
+  if (!map) {
+    // First time: create the map on the div with id="map"
+    map = L.map('map').setView([lat, lng], 13);
+
+    // Add the OpenStreetMap tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+  } else {
+    // Map exists: just move the view
+    map.setView([lat, lng], 13);
+  }
+
+  // Handle the marker
+  if (marker) {
+    // Move existing marker
+    marker.setLatLng([lat, lng]);
+  } else {
+    // Create a new marker the first time
+    marker = L.marker([lat, lng]).addTo(map);
+  }
+}
+
+console.log('initMap function defined.');
+
